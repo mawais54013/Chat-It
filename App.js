@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Test App</Text>
+        <Text>App to make video and chat </Text>
       </View>
     );
   }
