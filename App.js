@@ -7,7 +7,7 @@ export default class App extends React.Component {
     return (
        <View>
        <Header 
-         centerComponent={{ text: 'Chat-It!', style: { color: '#fff', fontSize: '30'} }}
+         centerComponent={{ text: 'Welcome To Chat-It!', style: { color: '#fff', fontSize: '30'} }}
        />
         <Text style={styles.headline}>App to make video and chat </Text>
       </View>
