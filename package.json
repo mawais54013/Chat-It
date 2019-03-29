@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "expo": "^31.0.2",
+    "prop-types": "^15.7.2",
     "pubnub-react": "^1.2.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
-    "react-native-elements": "^1.1.0"
+    "react-native-elements": "^1.1.0",
+    "react-native-twilio-video-webrtc": "^1.0.1",
+    "react-native-webrtc": "^1.69.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
