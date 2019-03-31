@@ -49,7 +49,6 @@ class App extends React.Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   editorDidMount(editor, monaco) {
-    //console.log('editorDidMount', editor);
     editor.focus();
   }
   onChange(newValue, e) {
@@ -89,13 +88,16 @@ class App extends React.Component {
         editorDidMount={this.editorDidMount}
       />
           </Col>
-          <Col sm={2}>2 of 2</Col>
+          <Col sm={2}>Facetime here</Col>
         </Row>
-        {/* <Row>
-          <Col>1 of 3</Col>
+        <br/>
+        <Row>
+          <Col>chat area here</Col>
           <Col>2 of 3</Col>
           <Col>3 of 3</Col>
-        </Row> */}
+        </Row>
+        <br/>
+        <br/>
       </Container>
       {/* <MonacoEditor
         height={this.state.height + 'px'}
