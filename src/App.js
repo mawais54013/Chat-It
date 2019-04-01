@@ -99,15 +99,6 @@ class App extends React.Component {
         <br/>
         <br/>
       </Container>
-      {/* <MonacoEditor
-        height={this.state.height + 'px'}
-        language="javascript"
-        value={code}
-        theme="vs-dark"
-        options={options}
-        onChange={this.onChange}
-        editorDidMount={this.editorDidMount}
-      /> */}
       </div>
     );
   }
