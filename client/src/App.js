@@ -54,3 +54,57 @@ import { Controlled as CodeMirror } from "react-codemirror2";
 import Pusher from "pusher-js";
 import pushid from "pushid";
 import axios from "axios";
+
+import "./App.css";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/material/css";
+
+import "codemirror/mode/htmlmixed/htmlmixed";
+import "codemirror/mode/css/css";
+import "codemirror/mode/javascript/javascript";
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      id: "",
+      html: "",
+      css: "",
+      js: ""
+    };
+
+    this.pusher = new Pusher("0309639b3bc0d2427a18", {
+      cluster: "eu",
+      forceTLS: true
+    });
+
+    this.channel = this.pusher.subscribe("editor");
+  }
+
+  componentDidMount() {
+    this.setState({
+      id: pushid()
+    });
+
+    this.channel.bind("text-update", data => {
+      const { id } = this.state;
+      if(data.id === id) return;
+
+      this.setState({
+        html: data.html,
+        css: data.css,
+        js: data.js
+      });
+    });
+  }
+
+  syncUpdates = () => {
+    const data = { ...this.state };
+
+    axios 
+        .post("http://localhost:3000/update-editor", data)
+        .catch(console.error);
+  };
+
+  
+}
