@@ -48,7 +48,6 @@
 
 
 // export default App;
-
 import React, { Component } from "react";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import Pusher from "pusher-js";
@@ -70,11 +69,11 @@ class App extends Component {
       id: "",
       html: "",
       css: "",
-      js: "//code"
+      js: ""
     };
 
-    this.pusher = new Pusher("18160601861a89d7f8f7", {
-      cluster: "eu",
+    this.pusher = new Pusher("0309639b3bc0d2427a18", {
+      cluster: "us3",
       forceTLS: true
     });
 
@@ -112,6 +111,7 @@ class App extends Component {
 
   runCode = () => {
     const { html, css, js } = this.state;
+
     const iframe = this.refs.iframe;
     const document = iframe.contentDocument;
     const documentContents = `
@@ -128,7 +128,7 @@ class App extends Component {
       </head>
       <body>
         ${html}
-        <p id="demo"></p>
+
         <script type="text/javascript">
           ${js}
         </script>
@@ -153,7 +153,7 @@ class App extends Component {
     return (
       <div className="App">
         <section className="playground">
-          {/* <div className="code-editor html-code">
+          <div className="code-editor html-code">
             <div className="editor-header">HTML</div>
             <CodeMirror
               value={html}
@@ -165,9 +165,8 @@ class App extends Component {
                 this.setState({ html }, () => this.syncUpdates());
               }}
             />
-
-          </div> */}
-          {/* <div className="code-editor css-code">
+          </div>
+          <div className="code-editor css-code">
             <div className="editor-header">CSS</div>
             <CodeMirror
               value={css}
@@ -179,7 +178,7 @@ class App extends Component {
                 this.setState({ css }, () => this.syncUpdates());
               }}
             />
-          </div> */}
+          </div>
           <div className="code-editor js-code">
             <div className="editor-header">JavaScript</div>
             <CodeMirror
