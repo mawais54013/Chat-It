@@ -4,6 +4,7 @@ import Pusher from "pusher-js";
 import pushid from "pushid";
 import axios from "axios";
 
+import Test from "./Home";
 // import "./App.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
@@ -22,6 +23,7 @@ class CodingPage extends Component {
       js: ""
     };
 
+    console.log(Test);
     this.pusher = new Pusher("0309639b3bc0d2427a18", {
       cluster: "us3",
       forceTLS: true
@@ -92,6 +94,7 @@ class CodingPage extends Component {
   };
 
   render() {
+    console.log(localStorage.getItem('mainKey'));
     const { html, js, css } = this.state;
     const codeMirrorOptions = {
       theme: "material",
