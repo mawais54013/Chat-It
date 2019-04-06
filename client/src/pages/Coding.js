@@ -1,11 +1,10 @@
-
 import React, { Component } from "react";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import Pusher from "pusher-js";
 import pushid from "pushid";
 import axios from "axios";
 
-import "./App.css";
+// import "./App.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
 
