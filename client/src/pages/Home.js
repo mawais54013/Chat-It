@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import rand from "random-key";
 import { database } from "firebase";
+import axios from 'axios';
 
 export default class HomePage extends React.Component {
     state = {

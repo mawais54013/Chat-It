@@ -4,7 +4,6 @@ import Pusher from "pusher-js";
 import pushid from "pushid";
 import axios from "axios";
 
-import Test from "./Home";
 // import "./App.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
@@ -20,16 +19,30 @@ class CodingPage extends Component {
       id: "",
       html: "",
       css: "",
-      js: ""
+      js: "",
+      key: localStorage.getItem('mainKey')
     };
 
-    console.log(Test);
+    // this.pusher = new Pusher("0309639b3bc0d2427a18", {
+    //   cluster: "us3",
+    //   forceTLS: true
+    // });
     this.pusher = new Pusher("0309639b3bc0d2427a18", {
-      cluster: "us3",
-      forceTLS: true
+      appId: '749058',
+      key: '0309639b3bc0d2427a18',
+      secret: 'e988bf4661d5c0996a3a',
+      cluster: 'us3',
+      encrypted: true
     });
 
-    this.channel = this.pusher.subscribe("editor");
+    axios.post('/update-editor/:id', (req, res) => {
+      this.pusher.trigger('edit', 'text-update', {
+       ...req.body,
+      });
+      res.status(200).send('OK');
+    });
+
+    this.channel = this.pusher.subscribe("edit");
   }
 
   componentDidUpdate() {
@@ -57,7 +70,7 @@ class CodingPage extends Component {
     const data = { ...this.state };
 
     axios
-      .post("http://localhost:5000/update-editor", data)
+      .post("http://localhost:5000/update-editor/" + this.state.key, data)
       .catch(console.error);
   };
 
@@ -94,7 +107,8 @@ class CodingPage extends Component {
   };
 
   render() {
-    console.log(localStorage.getItem('mainKey'));
+
+    console.log(this.state.id)
     const { html, js, css } = this.state;
     const codeMirrorOptions = {
       theme: "material",
