@@ -23,29 +23,16 @@ class CodingPage extends Component {
       key: localStorage.getItem('mainKey')
     };
 
-    // this.pusher = new Pusher("0309639b3bc0d2427a18", {
-    //   cluster: "us3",
-    //   forceTLS: true
-    // });
     this.pusher = new Pusher("0309639b3bc0d2427a18", {
-      appId: '749058',
-      key: '0309639b3bc0d2427a18',
-      secret: 'e988bf4661d5c0996a3a',
-      cluster: 'us3',
-      encrypted: true
-    });
-
-    axios.post('/update-editor/:id', (req, res) => {
-      this.pusher.trigger('edit', 'text-update', {
-       ...req.body,
-      });
-      res.status(200).send('OK');
+      cluster: "us3",
+      forceTLS: true
     });
 
     this.channel = this.pusher.subscribe("edit");
   }
 
   componentDidUpdate() {
+    
     this.runCode();
   }
 
@@ -61,7 +48,8 @@ class CodingPage extends Component {
       this.setState({
         html: data.html,
         css: data.css,
-        js: data.js
+        js: data.js,
+        name: this.state.key
       });
     });
   }
@@ -71,6 +59,10 @@ class CodingPage extends Component {
 
     axios
       .post("http://localhost:5000/update-editor/" + this.state.key, data)
+      .then(function (res)
+      {
+        console.log(res);
+      })
       .catch(console.error);
   };
 

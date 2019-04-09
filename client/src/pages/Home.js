@@ -30,7 +30,7 @@ export default class HomePage extends React.Component {
 
     render() {
         localStorage.setItem('mainKey', this.state.key);
-        
+
         return (
             <React.Fragment>
                 <div className="homepage">

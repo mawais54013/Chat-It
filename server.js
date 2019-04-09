@@ -21,15 +21,13 @@ app.use(bodyParser.json());
 
 
 app.post('/update-editor/:id', (req, res) => {
-  // pusher.trigger('edit', 'text-update', {
-  //  ...req.body,
-  // });
-  // res.status(200).send('OK');
+  console.log(res)
+  pusher.trigger(res.data.name, 'text-update', {
+   ...req.body,
+  });
+  res.status(200).send('OK');
 });
 
-// app.get('/', (req, res) => {
-//   console.log(res);
-// });
 
 app.set('port', process.env.PORT || 5000);
 const server = app.listen(app.get('port'), () => {
