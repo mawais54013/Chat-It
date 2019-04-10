@@ -21,8 +21,8 @@ app.use(bodyParser.json());
 
 
 app.post('/update-editor/:id', (req, res) => {
-  console.log(res.req.body)
-  pusher.trigger(res.data.name, 'text-update', {
+  console.log(res.req.body.key)
+  pusher.trigger(`${res.req.body.key}`, 'text-update', {
    ...req.body,
   });
   res.status(200).send('OK');

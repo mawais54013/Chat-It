@@ -28,11 +28,18 @@ class CodingPage extends Component {
       forceTLS: true
     });
 
-    this.channel = this.pusher.subscribe("edit");
+    // this.channel = this.pusher.subscribe(`${this.state.key}`);
+
+    let obj = {};
+    for(let i = 0; i <= 10; i++)
+    {
+      obj[i] = this.state.key;
+    }
+    console.log(obj);
+    this.channel = this.pusher.subscribe(`${obj[0]}`);
   }
 
   componentDidUpdate() {
-    
     this.runCode();
   }
 
