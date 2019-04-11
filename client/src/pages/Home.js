@@ -23,6 +23,7 @@ export default class HomePage extends React.Component {
             .ref("code-sessions/" + this.state.key)
             .set({
                 content: "Happy Coding",
+                id: this.state.key,
                 createdon: Date()
             });
         this.props.history.push("/" + this.state.key);
@@ -30,6 +31,7 @@ export default class HomePage extends React.Component {
 
     render() {
         localStorage.setItem('mainKey', this.state.key);
+        sessionStorage.setItem("mainKey", this.state.key);
 
         return (
             <React.Fragment>
