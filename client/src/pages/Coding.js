@@ -120,16 +120,16 @@
   //       <section className="playground">
           // <div className="code-editor html-code">
           //   <div className="editor-header">HTML</div>
-          //   <CodeMirror
-          //     value={html}
-          //     options={{
-          //       mode: "htmlmixed",
-          //       ...codeMirrorOptions
-          //     }}
-          //     onBeforeChange={(editor, data, html) => {
-          //       this.setState({ html }, () => this.syncUpdates());
-          //     }}
-          //   />
+            // <CodeMirror
+            //   value={html}
+            //   options={{
+            //     mode: "htmlmixed",
+            //     ...codeMirrorOptions
+            //   }}
+            //   onBeforeChange={(editor, data, html) => {
+            //     this.setState({ html }, () => this.syncUpdates());
+            //   }}
+            // />
           // </div>
           // <div className="code-editor css-code">
           //   <div className="editor-header">CSS</div>
@@ -262,10 +262,24 @@ export default class CodingPage extends React.Component {
               theme: "dracula",
               lineNumbers: true,
               readOnly: false,
-              mode: "html"
+              mode: "javascript"
             }}
           />
           </div>
+          {/* <div className="codeArea">
+          <CodeMirror
+            ref={r => (this.codemirror = r)}
+            className="code-mirror-container"
+            value={this.state.code}
+            onChange={this.onChange}
+            options={{
+              theme: "dracula",
+              lineNumbers: true,
+              readOnly: false,
+              mode: "js"
+            }}
+          />
+          </div> */}
           <iframe id="iframe" srcDoc={hCode}>
           <p>Your browser does not support iframes.</p>
         </iframe>
