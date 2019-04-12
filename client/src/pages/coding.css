@@ -1,0 +1,13 @@
+#iframe
+{
+    background-color: white;
+    width: 100%;
+}
+/* #codeArea
+{
+    height: 250px;
+} */
+.cm-s-dracula.CodeMirror
+{
+    height: 200px;
+}

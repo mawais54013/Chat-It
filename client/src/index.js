@@ -6,12 +6,12 @@ import registerServiceWorker from "./registerServiceWorker";
 import * as firebase from "firebase";
 
 var config = {
-    apiKey: "AIzaSyBx9tc3BqVEsNQDdFkRIrrtthpNShiEDTY",
-    authDomain: "chat-example-b1fe3.firebaseapp.com",
-    databaseURL: "https://chat-example-b1fe3.firebaseio.com",
-    projectId: "chat-example-b1fe3",
-    storageBucket: "chat-example-b1fe3.appspot.com",
-    messagingSenderId: "1001884629655"
+    apiKey: "AIzaSyATqbuKr2hAJEaTfiUgRYU_h3Y94hcEWuM",
+    authDomain: "real-time-code.firebaseapp.com",
+    databaseURL: "https://real-time-code.firebaseio.com",
+    projectId: "real-time-code",
+    storageBucket: "real-time-code.appspot.com",
+    messagingSenderId: "1053713131883"
   };
   firebase.initializeApp(config);
 
