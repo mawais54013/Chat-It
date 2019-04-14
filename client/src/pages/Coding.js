@@ -117,6 +117,7 @@ import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
 import CodeMirror from "react-codemirror";
+import Webcam from "react-webcam";
 import "./coding.css";
 
 require("codemirror/lib/codemirror.css");
@@ -269,6 +270,9 @@ runCode = () => {
         <section className="result" id="iframe">
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
+        </div>
+        <div>
+        <Webcam />
         </div>
       </React.Fragment>
     );
