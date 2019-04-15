@@ -117,7 +117,7 @@ import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
 import CodeMirror from "react-codemirror";
-import Webcam from "react-webcam";
+// import Webcam from "react-webcam";
 import "./coding.css";
 
 require("codemirror/lib/codemirror.css");
@@ -272,7 +272,7 @@ runCode = () => {
         </section>
         </div>
         <div>
-        <Webcam />
+        {/* <Webcam /> */}
         </div>
       </React.Fragment>
     );
