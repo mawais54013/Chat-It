@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Header from "../Components/header";
 import rand from "random-key";
 import { database } from "firebase";
+import "./home.css";
+
 
 export default class HomePage extends React.Component {
+  
   state = {
     key: rand.generate(5),
     num: null
@@ -27,6 +30,7 @@ export default class HomePage extends React.Component {
     this.props.history.push("/" + this.state.key);
   };
   render() {
+    
     return (
       <React.Fragment>
         <Header
