@@ -271,15 +271,8 @@ runCode = () => {
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
         </div>
-        <div>
-            <div id="test1">
-            <video id="localVideo" autoPlay></video>
-            </div>
-            <div id="test2">
-            <video id="remoteVideo" autoPlay></video>
-            </div>
-        </div>
-        <script src=""></script>
+          
+        
       </React.Fragment>
     );
   }
