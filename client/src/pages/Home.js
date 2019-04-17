@@ -100,18 +100,24 @@ class Home extends Component {
       console.log('getUserMedia Error: ', e);
     }
 
-    navigator.mediaDevices.getUserMedia( constraints )
-    .then( success )
-    .catch( failure )
+    // navigator.mediaDevices.getUserMedia( constraints )
+    // .then( success )
+    // .catch( failure )
   }
+
+  // createOffer = () => {
+  //   console.log('offer')
+  //   this.pc.createOffer({offerToReceiveVideo: 1})
+  //     .then(sdp => {
+  //       console.log(JSON.stringify(sdp))
+  //       this.pc.setLocalDescription(sdp)
+  //     }, e => {})
+  // }
 
   createOffer = () => {
     console.log('offer')
-    this.pc.createOffer({offerToReceiveVideo: 1})
-      .then(sdp => {
-        console.log(JSON.stringify(sdp))
-        this.pc.setLocalDescription(sdp)
-      }, e => {})
+    let number = '17';
+    localStorage.setItem('state', number);
   }
 
   setRemoteDescription = () => {
@@ -120,7 +126,7 @@ class Home extends Component {
     this.pc.setRemoteDescription(new RTCSessionDescription(desc))
   }
 
-  createAnswer = () => {
+  createAnswer = (test) => {
     console.log('Answer')
     this.pc.createAnswer({offerToReceiveVideo: 1})
       .then(sdp => {
@@ -140,11 +146,11 @@ class Home extends Component {
     
     return (
       <div>
-        <video style = {{width: 240, height: 240, margin: 5, backgroundColor: 'black '}} ref={this.localVideoref} autoPlay></video>
-        <video style = {{width: 240, height: 240, margin: 5, backgroundColor: 'black '}} ref={this.remoteVideoref} autoPlay></video>
+        {/* <video style = {{width: 240, height: 240, margin: 5, backgroundColor: 'black '}} ref={this.localVideoref} autoPlay></video>
+        <video style = {{width: 240, height: 240, margin: 5, backgroundColor: 'black '}} ref={this.remoteVideoref} autoPlay></video> */}
      
         <button onClick={this.createOffer}>Offer</button>
-        <button onClick={this.createAnswer}>Answer</button>
+        <button onClick={this.createAnswer('17')}>Answer</button>
         <br />
         <textarea ref={ref => { this.textref = ref }}/>
         <br />
