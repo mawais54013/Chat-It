@@ -11,31 +11,16 @@ export default class HomePage extends React.Component {
   state = {
     key: rand.generate(5),
     num: null,
-    roomName: ''
+    // roomName: ''
   };
   componentDidMount = () => {
-    this.setup();
+    // this.setup();
     database()
       .ref("code-sessions")
       .on("value", s => {
         this.setState({ num: s.numChildren() });
       });
   };
-
-  setup = () => {
-    this.checkiOS();
-    if(window.innerWidth > 800) this.roomNameInput.focus();
-    if(window.location.hash && window.location.hash.length > 1) {
-      this.setState({ roomName: window.location.hash.slice(1) });
-    }
-  }
-
-  checkiOS = () => {
-    const ua = window.navigator.userAgent;
-    const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-    const webkit = !!ua.match(/WebKit/i);
-    const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-  }
 
   onNewGround = () => {
     database()
@@ -46,14 +31,7 @@ export default class HomePage extends React.Component {
       });
     this.props.history.push("/" + this.state.key);
 
-    this.handleStart();
   };
-
-  handleStart = () => {
-    window.location.hash = `#${this.state.roomName}`;
-    localStorage.clear();
-    localStorage.setItem("room", this.state.roomName);
-  }
 
   render() {
     
@@ -76,14 +54,6 @@ export default class HomePage extends React.Component {
             Database and Code Mirror as Editor.
           </p>
           <div>
-          <input
-                className="textBox"
-                type="text"
-                placeholder="Room Name"
-                value={this.state.roomName}
-                ref={(el) => this.roomNameInput = el}
-                onChange={(e) => { this.setState({ roomName: e.target.value }) }}
-              />
             <button className="btn" onClick={this.onNewGround}>
               Share Code
             </button>
