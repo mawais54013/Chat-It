@@ -117,6 +117,7 @@ import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
 import CodeMirror from "react-codemirror";
+import Party from '../Components/Party'
 // import Webcam from "react-webcam";
 import "./coding.css";
 
@@ -137,7 +138,7 @@ export default class CodingPage extends React.Component {
   };
 
   componentDidMount = () => {
-
+    console.log(localStorage.getItem("room"))
     const { params } = this.props.match;
     let self = this;
     database()
