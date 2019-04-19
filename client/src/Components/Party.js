@@ -61,11 +61,16 @@ class Party extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      peers: []
+      peers: [],
+      roomID: `liowebrtc-vdemo-party-${this.props.roomName}`,
+      inRoom: false,
     };
   }
 
-  join = (webrtc) => webrtc.joinRoom('video-chat-room-arbitrary-name');
+  // join = (webrtc) => webrtc.joinRoom('video-chat-room-arbitrary-name');
+  join = (webrtc) => webrtc.joinRoom(this.state.roomID, (err, desc) => {
+    this.setState({ inRoom: true });
+  });
 
   handleCreatedPeer = (webrtc, peer) => {
     this.setState({ peers: [...this.state.peers, peer] });

@@ -372,21 +372,15 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
                     </div>
                   }
                   <button
-                    iconStyle={{ color: 'white' }}
-                    tooltip="Add Friends"
+                    // iconStyle={{ color: 'white' }}
+                    // tooltip="Add Friends"
                     onClick={this.handleInvite}
                     >
                       <i className="material-icons">group_add</i>
                   </button>
-                  <button
-                    iconStyle={{ color: 'white' }}
-                    tooltip="Quit"
-                    onClick={this.handleQuit}
-                    >
-                      <i className="material-icons">power_settings_new</i>
-                  </button>
                 </div>
               </div>
+
               <Party
                 roomName={`liowebrtc-vchat-demo-${this.state.roomName}`}
                 nick={this.state.nick}
@@ -403,4 +397,3 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
 
 }
 
-// =================================================================================
