@@ -124,6 +124,7 @@ import "./coding.css";
 
 require("codemirror/lib/codemirror.css");
 require("codemirror/mode/htmlmixed/htmlmixed");
+require("codemirror/mode/css/css")
 require("codemirror/mode/javascript/javascript");
 require("codemirror/theme/dracula.css");
 
@@ -132,6 +133,7 @@ export default class CodingPage extends React.Component {
     html: '',
     code: "Loading...",
     code1: `<h1 id='demo'></h1>`,
+    code2: 'css area',
     cursorPosition: {
       line: 0,
       ch: 0
@@ -200,13 +202,25 @@ onChange1(data) {
   this.runCode();
 }
 
+onChange2(data) {
+  this.setState({
+    code2: data,
+  })
+  this.runCode();
+}
+
 componentDidUpdate() {
   this.runCode();
 }
 
 runCode = () => {
-  const { code, code1 } = this.state;
+  // include code2 here
+  const { code, code1, code2 } = this.state;
 
+  // between head and body include following code
+  // <style>
+  // ${code2}
+  // </style>
   const iframe = this.refs.iframe;
   const document = iframe.contentDocument;
   const documentContents = `
@@ -217,6 +231,10 @@ runCode = () => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Document</title>
+
+      <style>
+    ${code2}
+    </style>
     </head>
     <body>
       ${code1}
@@ -273,7 +291,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
 
   render() {
     const { html } = this.state;
-
+    console.log(`${window.location.origin}/#${this.state.roomName}`,"test here");
     return (
       <React.Fragment>
         <Header
@@ -301,6 +319,19 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
               mode: "javascript"
             }}
 
+          />
+          </div>
+          <div>
+          <CodeMirror
+            value={this.state.code2}
+            onChange={value => { this.onChange2(value) }}
+            // value={html}
+            options={{
+              mode: 'css',
+              theme: 'dracula',
+              lineNumbers: true,
+              readOnly: false,
+            }}
           />
           </div>
           <div>
