@@ -26,6 +26,10 @@ export default class CodingPage extends React.Component {
       line: 0,
       ch: 0
     }, 
+    cursorPosition3: {
+      line: 0,
+      ch: 0
+    }, 
     startChat: false,
     nick: '',
     roomName: '',
@@ -45,29 +49,37 @@ export default class CodingPage extends React.Component {
       .ref("/code-sessions/" + params.sessionid)
       .once("value")
       .then(snapshot => {
-        self.setState({ code: snapshot.val().content + "", code2: snapshot.val().css + "", createdon: snapshot.val().createdon }, () => {
+        self.setState({ code: snapshot.val().content + "", code1: snapshot.val().content2 + "", code2: snapshot.val().css + "" }, () => {
           let content = snapshot.val().content;
           let css = snapshot.val().css;
+          let content2 = snapshot.val().content2;
+
           self.codemirror.getCodeMirror().setValue(content);
-          self.codemirror1.getCodeMirror().setValue(css);
+          self.codemirror4.getCodeMirror().setValue(css);
+          self.codemirror1.getCodeMirror().setValue(content2);
         });
         this.codeRef = database().ref("code-sessions/" + params.sessionid);
         this.codeRef.on("value", function(snapshot) {
           self.setState({
             code: snapshot.val().content,
             code2 : snapshot.val().css,
+            code1: snapshot.val().content2,
           });
           var currentCursorPos = self.state.cursorPosition;
           var currentCursorPos1 = self.state.cursorPosition1;
+          var currentCursorPos3 = self.state.cursorPosition3;
 
           self.codemirror.getCodeMirror().setValue(snapshot.val().content);
-          self.codemirror1.getCodeMirror().setValue(snapshot.val().css);
+          self.codemirror4.getCodeMirror().setValue(snapshot.val().css);
+          self.codemirror1.getCodeMirror().setValue(snapshot.val().content2);
 
           self.setState({ cursorPosition: currentCursorPos });
           self.setState({ cursorPosition1: currentCursorPos1 });
+          self.setState({ cursorPosition3: currentCursorPos3 });
 
           self.changeCursorPos();
           self.changeCursorPos1();
+          self.changeCursorPos3();
         });
       })
       .catch(e => {
@@ -79,9 +91,14 @@ export default class CodingPage extends React.Component {
     const { line, ch } = this.state.cursorPosition;
     this.codemirror.getCodeMirror().doc.setCursor(line, ch);
   };
-// css
+// html
   changeCursorPos1 = () => {
     const { line, ch } = this.state.cursorPosition1;
+    this.codemirror4.getCodeMirror().doc.setCursor(line, ch);
+  };
+  // css
+  changeCursorPos3 = () => {
+    const { line, ch } = this.state.cursorPosition3;
     this.codemirror1.getCodeMirror().doc.setCursor(line, ch);
   };
 // javascript
@@ -98,19 +115,33 @@ export default class CodingPage extends React.Component {
     );
     this.codeRef.child("content").set(newVal);
   };
-// css
+
   onChange2 = (newVal1, change) => {
     // console.log(newVal, change);
     this.setState(
       {
         cursorPosition1: {
+          line: this.codemirror4.getCodeMirror().doc.getCursor().line,
+          ch: this.codemirror4.getCodeMirror().doc.getCursor().ch
+        }
+      },
+      () => {}
+    );
+    this.codeRef.child("css").set(newVal1);
+  };
+// // css
+  onChange3 = (newVal2, change) => {
+    // console.log(newVal, change);
+    this.setState(
+      {
+        cursorPosition3: {
           line: this.codemirror1.getCodeMirror().doc.getCursor().line,
           ch: this.codemirror1.getCodeMirror().doc.getCursor().ch
         }
       },
       () => {}
     );
-    this.codeRef.child("css").set(newVal1);
+    this.codeRef.child("content2").set(newVal2);
   };
 
 // onChange1(data) {
@@ -120,12 +151,6 @@ export default class CodingPage extends React.Component {
 //   this.runCode();
 // }
 
-// onChange2(data) {
-//   this.setState({
-//     code2: data,
-//   })
-//   this.runCode();
-// }
 
 componentDidUpdate() {
   this.runCode();
@@ -235,12 +260,12 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           />
           </div>
           <div>
+            {/* css */}
           <CodeMirror
-          ref={r => (this.codemirror1 = r)}
+          ref={r => (this.codemirror4 = r)}
             value={this.state.code2}
             onChange={this.onChange2}
-            // onChange={value => { this.onChange2(value) }}
-            // value={html}
+            // onChange={this.onChange2}
             options={{
               mode: 'css',
               theme: 'dracula',
@@ -251,11 +276,11 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           </div>
           <div>
           <CodeMirror
-          ref={r => (this.codemirror2 = r)}
+          ref={r => (this.codemirror1 = r)}
             value={this.state.code1}
+            onChange={this.onChange3}
             // onChange={value => { this.onChange1(value) }}
             // value={html}
-            onChange={this.onChange3}
             options={{
               mode: 'htmlmixed',
               theme: 'dracula',
