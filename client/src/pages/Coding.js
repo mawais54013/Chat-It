@@ -22,6 +22,10 @@ export default class CodingPage extends React.Component {
       line: 0,
       ch: 0
     }, 
+    cursorPosition1: {
+      line: 0,
+      ch: 0
+    }, 
     startChat: false,
     nick: '',
     roomName: '',
@@ -34,37 +38,53 @@ export default class CodingPage extends React.Component {
 
   componentDidMount = () => {
     this.setUp();
-
     const { params } = this.props.match;
     let self = this;
+
     database()
       .ref("/code-sessions/" + params.sessionid)
       .once("value")
       .then(snapshot => {
-        self.setState({ code: snapshot.val().content + "", createdon: snapshot.val().createdon }, () => {
+        self.setState({ code: snapshot.val().content + "", code2: snapshot.val().css + "", createdon: snapshot.val().createdon }, () => {
           let content = snapshot.val().content;
-
+          let css = snapshot.val().css;
           self.codemirror.getCodeMirror().setValue(content);
+          self.codemirror1.getCodeMirror().setValue(css);
         });
         this.codeRef = database().ref("code-sessions/" + params.sessionid);
         this.codeRef.on("value", function(snapshot) {
           self.setState({
-            code: snapshot.val().content
+            code: snapshot.val().content,
+            code2 : snapshot.val().css,
           });
           var currentCursorPos = self.state.cursorPosition;
+          var currentCursorPos1 = self.state.cursorPosition1;
+
           self.codemirror.getCodeMirror().setValue(snapshot.val().content);
+          self.codemirror1.getCodeMirror().setValue(snapshot.val().css);
+
           self.setState({ cursorPosition: currentCursorPos });
+          self.setState({ cursorPosition1: currentCursorPos1 });
+
           self.changeCursorPos();
+          self.changeCursorPos1();
         });
       })
       .catch(e => {
         self.codemirror.getCodeMirror().setValue("No Sessions Found!");
       });
   };
+  // javascript
   changeCursorPos = () => {
     const { line, ch } = this.state.cursorPosition;
     this.codemirror.getCodeMirror().doc.setCursor(line, ch);
   };
+// css
+  changeCursorPos1 = () => {
+    const { line, ch } = this.state.cursorPosition1;
+    this.codemirror1.getCodeMirror().doc.setCursor(line, ch);
+  };
+// javascript
   onChange = (newVal, change) => {
     // console.log(newVal, change);
     this.setState(
@@ -78,33 +98,42 @@ export default class CodingPage extends React.Component {
     );
     this.codeRef.child("content").set(newVal);
   };
+// css
+  onChange2 = (newVal1, change) => {
+    // console.log(newVal, change);
+    this.setState(
+      {
+        cursorPosition1: {
+          line: this.codemirror1.getCodeMirror().doc.getCursor().line,
+          ch: this.codemirror1.getCodeMirror().doc.getCursor().ch
+        }
+      },
+      () => {}
+    );
+    this.codeRef.child("css").set(newVal1);
+  };
 
-onChange1(data) {
-  this.setState({
-    code1: data,
-  })
-  this.runCode();
-}
+// onChange1(data) {
+//   this.setState({
+//     code1: data,
+//   })
+//   this.runCode();
+// }
 
-onChange2(data) {
-  this.setState({
-    code2: data,
-  })
-  this.runCode();
-}
+// onChange2(data) {
+//   this.setState({
+//     code2: data,
+//   })
+//   this.runCode();
+// }
 
 componentDidUpdate() {
   this.runCode();
 }
 
 runCode = () => {
-  // include code2 here
   const { code, code1, code2 } = this.state;
 
-  // between head and body include following code
-  // <style>
-  // ${code2}
-  // </style>
   const iframe = this.refs.iframe;
   const document = iframe.contentDocument;
   const documentContents = `
@@ -207,8 +236,10 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           </div>
           <div>
           <CodeMirror
+          ref={r => (this.codemirror1 = r)}
             value={this.state.code2}
-            onChange={value => { this.onChange2(value) }}
+            onChange={this.onChange2}
+            // onChange={value => { this.onChange2(value) }}
             // value={html}
             options={{
               mode: 'css',
@@ -220,9 +251,11 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           </div>
           <div>
           <CodeMirror
+          ref={r => (this.codemirror2 = r)}
             value={this.state.code1}
-            onChange={value => { this.onChange1(value) }}
+            // onChange={value => { this.onChange1(value) }}
             // value={html}
+            onChange={this.onChange3}
             options={{
               mode: 'htmlmixed',
               theme: 'dracula',
