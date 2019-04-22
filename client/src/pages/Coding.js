@@ -16,8 +16,8 @@ export default class CodingPage extends React.Component {
   state = {
     html: '',
     code: "Loading...",
-    code1: `<h1 id='demo'></h1>`,
-    code2: 'css area',
+    code1: `Loading...`,
+    code2: 'Loading...',
     cursorPosition: {
       line: 0,
       ch: 0
@@ -49,7 +49,7 @@ export default class CodingPage extends React.Component {
       .ref("/code-sessions/" + params.sessionid)
       .once("value")
       .then(snapshot => {
-        self.setState({ code: snapshot.val().content + "", code1: snapshot.val().content2 + "", code2: snapshot.val().css + "" }, () => {
+        self.setState({ code: snapshot.val().content + "", code2: snapshot.val().css + "", code1: snapshot.val().content2 + "" }, () => {
           let content = snapshot.val().content;
           let css = snapshot.val().css;
           let content2 = snapshot.val().content2;
@@ -262,7 +262,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           <div>
             {/* css */}
           <CodeMirror
-          ref={r => (this.codemirror4 = r)}
+          ref={t => (this.codemirror4 = t)}
             value={this.state.code2}
             onChange={this.onChange2}
             // onChange={this.onChange2}

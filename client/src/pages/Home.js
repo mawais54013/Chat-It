@@ -27,6 +27,8 @@ export default class HomePage extends React.Component {
       .ref("code-sessions/" + this.state.key)
       .set({
         content: "Happy Coding",
+        content2: "<h1 id='demo'></h1>",
+        css: "css area",
         createdon: Date()
       });
     this.props.history.push("/" + this.state.key);
