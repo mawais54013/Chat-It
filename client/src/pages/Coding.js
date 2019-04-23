@@ -145,14 +145,6 @@ export default class CodingPage extends React.Component {
     this.codeRef.child("content2").set(newVal2);
   };
 
-// onChange1(data) {
-//   this.setState({
-//     code1: data,
-//   })
-//   this.runCode();
-// }
-
-
 componentDidUpdate() {
   this.runCode();
 }
@@ -248,6 +240,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         <Col xs={12} md={8}>
         <div className="coding-page">
         <div className="codeArea">
+        <h4>Javascript</h4>
           <CodeMirror
             ref={r => (this.codemirror = r)}
             className="code-mirror-container"
@@ -264,7 +257,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           />
           </div>
           <div>
-            {/* css */}
+          <h4>CSS</h4>
           <CodeMirror
           ref={t => (this.codemirror4 = t)}
             value={this.state.code2}
@@ -279,6 +272,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           />
           </div>
           <div>
+          <h4>HTML</h4>
           <CodeMirror
           ref={r => (this.codemirror1 = r)}
             value={this.state.code1}
