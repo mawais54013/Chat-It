@@ -27,7 +27,7 @@ class Party extends Component {
   }
 
   generateRemotes = () => this.state.peers.map((peer) => (
-      <RemoteVideo key={`remote-video-${peer.id}`} peer={peer} />
+      <RemoteVideo key={`remote-video-${peer.id}`} peer={peer} id=""/>
     )
   );
 
@@ -40,6 +40,7 @@ class Party extends Component {
         onRemovedPeer={this.handleRemovedPeer}
       >
         <LocalVideo />
+        <br/>
         {
           this.state.peers &&
           this.generateRemotes()

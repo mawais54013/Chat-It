@@ -22,11 +22,10 @@
     width: 150px;
     height: 150px;
 }
-#remoteVideo
+video
 {
     width: 150px;
-    height: 150px;
-    
+    height: 150px;  
 }
 .container
 {

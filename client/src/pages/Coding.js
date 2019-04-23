@@ -1,3 +1,4 @@
+// include button to copy link address and sent to others
 import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
@@ -296,11 +297,8 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         <Col xs={6} md={4}>
         <div className="App">
           <div className="header">
-            <h1>P2P Video Chat Demo</h1>
-            <p>To try this out, open this page in another tab, or send this page to some friends. Open dev tools to see the logging.
-              To view the source code for this app, <a href="https://github.com/lazorfuzz/liowebrtc-video-demo" target="_blank" rel="noopener noreferrer">click here</a>. This app is powered by <a href="https://github.com/lazorfuzz/liowebrtc" target="_blank" rel="noopener noreferrer">LioWebRTC</a>.
-              <br /><br />
-              <a className="github-button" href="https://github.com/lazorfuzz/liowebrtc" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star lazorfuzz/liowebrtc on GitHub">Star LioWebRTC on GitHub</a></p>
+            <h2>Video Chat Area</h2>
+            <p>Type in the room name and your name to join or start a video chat room</p>
           </div>
           {
             !this.state.startChat &&
@@ -345,8 +343,6 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
                     </div>
                   }
                   <button
-                    // iconStyle={{ color: 'white' }}
-                    // tooltip="Add Friends"
                     onClick={this.handleInvite}
                     >
                       <i className="material-icons">group_add</i>
