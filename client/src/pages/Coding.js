@@ -4,6 +4,7 @@ import { database } from "firebase";
 import CodeMirror from "react-codemirror";
 import Party from '../Components/Party'
 import { getRandomRGB } from '../Components/util';
+import { Container, Row , Col} from 'react-bootstrap';
 import "./coding.css";
 
 require("codemirror/lib/codemirror.css");
@@ -242,6 +243,9 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             </div>
           }
         />
+        <Container>
+        <Row>
+        <Col xs={12} md={8}>
         <div className="coding-page">
         <div className="codeArea">
           <CodeMirror
@@ -293,7 +297,9 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
         </div>
+        </Col>
           
+        <Col xs={6} md={4}>
         <div className="App">
           <div className="header">
             <h1>P2P Video Chat Demo</h1>
@@ -364,9 +370,11 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             </div>
           }
         </div>
+        </Col>
+        </Row>
+        </Container>
       </React.Fragment>
     );
   }
-
 }
 

@@ -1,3 +1,4 @@
+// particle js for the background
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../Components/header";
@@ -26,7 +27,9 @@ export default class HomePage extends React.Component {
     database()
       .ref("code-sessions/" + this.state.key)
       .set({
-        content: "Happy Coding",
+        content: `// Happy coding
+document.getElementById("demo").innerHTML = 5 + 6;
+        `,
         content2: "<h1 id='demo'></h1>",
         css: "css area",
         createdon: Date()
@@ -39,21 +42,20 @@ export default class HomePage extends React.Component {
     
     return (
       <React.Fragment>
-        <Header
-          extras={this.state.num ? `Total ${this.state.num}+ Shares` : null}
-        />
+        <Header/>
         <div className="homepage">
           <p className="title">
             <br />
-            Share Code within <span className="highlight">Realtime</span>.
+            Share Code in <span className="highlight">Realtime</span>.
             <br />
-            Anywhere, Anytime and with <span className="highlight">Anyone</span>
-            .
+            With Anyone at Anytime.
           </p>
-
+          <br/>
           <p className="sub-title">
-            Simple Realtime Code Sharing Editor App. Using Firebase Realtime
-            Database and Code Mirror as Editor.
+            Code Share Editor. 
+            <br/>
+            Using Firebase Realtime
+            Database, Code Mirror as Editor, Liowebrtc for video chatting, and. 
           </p>
           <div>
             <button className="btn" onClick={this.onNewGround}>

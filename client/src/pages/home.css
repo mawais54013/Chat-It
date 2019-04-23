@@ -16,6 +16,14 @@
 #remoteVideo
 {
     width: 150px;
-    height: 150px;
-    
+    height: 150px;  
+}
+ .homepage
+{
+    text-align: center;
+}
+
+.sub-title
+{
+    max-width: 10000px;
 }

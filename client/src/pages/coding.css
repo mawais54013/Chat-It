@@ -28,3 +28,11 @@
     height: 150px;
     
 }
+.container
+{
+    max-width: 1170px;
+}
+.iframe
+{
+    width: 100%;
+}
