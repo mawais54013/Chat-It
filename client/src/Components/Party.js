@@ -38,10 +38,6 @@ class Party extends Component {
         onReady={this.join}
         onCreatedPeer={this.handleCreatedPeer}
         onRemovedPeer={this.handleRemovedPeer}
-        media= {{
-          video: true,
-          audio: true
-        }}
       >
         <LocalVideo />
         <br/>
