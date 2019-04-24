@@ -13,6 +13,7 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^5.1.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.7.0",
     "react-liowebrtc": "^1.2.4",
     "react-router-dom": "^5.0.0",

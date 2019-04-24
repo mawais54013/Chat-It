@@ -1,4 +1,4 @@
-// include button to copy link address and sent to others
+// start chat application 
 import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
@@ -6,6 +6,7 @@ import CodeMirror from "react-codemirror";
 import Party from '../Components/Party'
 import { getRandomRGB } from '../Components/util';
 import { Container, Row , Col} from 'react-bootstrap';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import "./coding.css";
 
 require("codemirror/lib/codemirror.css");
@@ -223,7 +224,8 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
 
   render() {
     const { html } = this.state;
-    console.log(`${window.location.origin}/#${this.state.roomName}`,"test here");
+    // console.log(`${window.location.origin}/#${this.state.roomName}`,"test here");
+    const url = window.location.href;
     return (
       <React.Fragment>
         <Header
@@ -342,11 +344,11 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
                       <div className="colorCover" onClick={() => this.setState({ choosingColor: false })} />
                     </div>
                   }
-                  <button
-                    onClick={this.handleInvite}
-                    >
-                      <i className="material-icons">group_add</i>
+                  <CopyToClipboard text={url}>
+                  <button onClick={this.handleInvite}>
+                    Click to Copy and Share Link Address
                   </button>
+                  </CopyToClipboard>
                 </div>
               </div>
 
