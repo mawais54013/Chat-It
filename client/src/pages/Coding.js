@@ -1,5 +1,4 @@
-// start chat application 
-// researching chat portion
+// 
 import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
