@@ -1,67 +1,132 @@
 import React, { Component } from 'react';
+// import './App.css';
+import PubNub from 'pubnub';
+var msgs = [];
+var letters = ['a',',b','c']
+var name;
+
+var pubnub = new PubNub({
+    subscribeKey: "sub-c-834542aa-99cd-11e6-82f8-02ee2ddab7fe",
+    publishKey: "pub-c-430229ac-cac4-4408-a447-569b97be7f36",
+})
+
+class Login extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      loggined: false,
+      isEmpty: false
+    }
+
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleKeyDown (e) {
+    if (e.which === 13) {
+      if (e.target.value === "") {
+        this.setState({loggined: false, isEmpty: true})
+      } else {
+        name = e.target.value;
+        this.setState({loggined: true});
+        pubnub.subscribe({
+            channels: ['my_channel'],
+            withPresence: true,
+        });
+        pubnub.addListener({
+            message: function(msg) {
+              msgs.push(msg.message);
+            //   self.setState({newMessage: true});
+              console.log('===========\n', msg, '\n===============');
+            }
+        });
+
+      }
+    }
+  }
+
+  render () {
+    let inputType;
+    if (!this.state.loggined && this.state.isEmpty) {
+      inputType = (
+        <div className="login-block">
+          <input type="text" style={{borderBottom: '1px solid red'}} onKeyDown={this.handleKeyDown} id="input" placeholder="Type your login and press Enter"></input>
+        </div>
+      )
+    } else if (!this.state.loggined) {
+      inputType = (
+        <div className="login-block">
+          <input type="text" onKeyDown={this.handleKeyDown} id="input" placeholder="Type your login and press Enter"></input>
+        </div>
+      )
+    } else {
+      inputType = null;
+    }
+    return (
+      <div>
+        { inputType }
+      </div>
+    )
+  }
+};
 
 class Chat extends Component {
-
-    render() {
-        // var output = PUBNUB.$('output');
-        // var input = PUBNUB.$('input'); 
-        // var button = PUBNUB.$('button');
-        // var avatar = PUBNUB.$('avatar');
-        // var presence = PUBNUB.$('presence');
-
-        // var channel = '1';
-        // avatar.className = 'face-' + ((Math.random() * 13 + 1) >>> 0) + ' color-' + ((Math.random() * 10 + 1) >>> 0);
-
-        // var p = PUBNUB.init({
-        //     subscribe_key: 'sub-c-1f66d32e-68b1-11e9-8122-22455f4026bf',
-        // // 'sub-c-f762fb78-2724-11e4-a4df-02ee2ddab7fe',
-        //     publish_key: 'pub-c-bf4fe468-70b4-46de-9837-0ef63cd6a138'
-        // });
-
-        // p.subscribe({
-        //     channel: channel,
-        //     callback: function(m) {
-        //         output.innerHTML = '<p><i class="' + m.avatar + '"></i><span>' +  m.text.replace( /[<>]/ig, '' ) + '</span></p>' + output.innerHTML; 
-        //     },
-        //     presence: function(m){
-        //         if(m.occupancy > 1) {
-        //             presence.textContent = m.occupancy + ' people online';
-        //         }
-        //     }
-        // });
-
-        // p.bind('keyup', input, function(e) {
-        //     (e.keyCode || e.charCode) === 13 && publish()
-        // });
-    
-        // p.bind('click', button, publish);
-    
-        // function publish() {
-        //     p.publish({
-        //         channel : channel, 
-        //         message : {avatar: avatar.className, text: input.value}, 
-        //         x : (input.value='')
-        //     });
-        // }
-
-        return (
-            <div>
-                <h3>Chat With Others Here</h3>
-
-                <section id="main" role="main">
-                    <div id="chat">
-                        <i id="avatar" class="face12"><input type="text" id="input" placeholder="Type your message..."></input></i>
-                    </div>
-                    <button id="button">
-                        Send Message
-                    </button>
-
-                    <p id="presence"></p>
-                    <div id="output"></div>
-                </section>
-            </div>
-        )
+  constructor() {
+    super();
+    this.state = {
+      newMessage: false
     }
+    // eslint-disable-next-line
+    self = this;
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleKeyDown (e) {
+    if (e.which === 13) {
+      pubnub.publish(
+          {
+              message: {
+                text: e.target.value,
+                uuid: name
+              },
+              channel: 'my_channel',
+          }
+      );
+      e.target.value = "";
+    }
+  }
+
+  render () {
+
+
+      return (
+        <div className="chat-block">
+          <ul>
+            { Object.keys(msgs).map(function(key) {
+                return (
+                  <li>
+                    <div className="avatar">{msgs[key].uuid[0].toUpperCase()}</div>
+                    <div className="message">{msgs[key].text}</div>
+                  </li>
+                )
+            })}
+          </ul>
+          <input type="text" onKeyDown={this.handleKeyDown} placeholder="Type your message and press Enter"></input>
+        </div>
+      )
+  }
+
 }
 
-export default Chat;
+class ChatArea extends Component {
+  render() {
+      return (
+        <div>
+          <Login></Login>
+          <Chat></Chat>
+        </div>
+      );
+  }
+}
+
+export default ChatArea;

@@ -8,6 +8,7 @@
     "codemirror": "^5.45.0",
     "firebase": "^5.9.3",
     "liowebrtc": "^0.1.14",
+    "pubnub": "^4.23.0",
     "pubnub-react": "^1.2.0",
     "random-key": "^0.3.2",
     "react": "^16.7.0",
