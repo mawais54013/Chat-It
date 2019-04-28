@@ -1,132 +1,167 @@
 import React, { Component } from 'react';
-// import './App.css';
-import PubNub from 'pubnub';
-var msgs = [];
-var letters = ['a',',b','c']
-var name;
+import ReactDOM from 'react-dom';
+// import './index.css';
 
-var pubnub = new PubNub({
-    subscribeKey: "sub-c-834542aa-99cd-11e6-82f8-02ee2ddab7fe",
-    publishKey: "pub-c-430229ac-cac4-4408-a447-569b97be7f36",
-})
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
 
-class Login extends Component {
+import PubNubReact from 'pubnub-react';
 
-  constructor() {
-    super();
-    this.state = {
-      loggined: false,
-      isEmpty: false
-    }
 
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
+const now = new Date().getTime();
+const username = ['user', now].join('-');
 
-  handleKeyDown (e) {
-    if (e.which === 13) {
-      if (e.target.value === "") {
-        this.setState({loggined: false, isEmpty: true})
-      } else {
-        name = e.target.value;
-        this.setState({loggined: true});
-        pubnub.subscribe({
-            channels: ['my_channel'],
-            withPresence: true,
-        });
-        pubnub.addListener({
-            message: function(msg) {
-              msgs.push(msg.message);
-            //   self.setState({newMessage: true});
-              console.log('===========\n', msg, '\n===============');
-            }
-        });
+const styles = {
+  card: {
+    maxWidth: 345,
+    margin: '0 auto', /* Added */
+    float: 'none', /* Added */
+    marginbottom: '10px' /* Added */
+  },
+  openCard:{
+    maxWidth: 200
+  },
+  openMedia: {
+    height: 80,
+  },
+  media: {
+    objectFit: 'cover',
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+};
 
-      }
-    }
-  }
+class Message extends Component{
 
   render () {
-    let inputType;
-    if (!this.state.loggined && this.state.isEmpty) {
-      inputType = (
-        <div className="login-block">
-          <input type="text" style={{borderBottom: '1px solid red'}} onKeyDown={this.handleKeyDown} id="input" placeholder="Type your login and press Enter"></input>
+      return ( 
+        <div > { this.props.uuid }: { this.props.text } 
         </div>
-      )
-    } else if (!this.state.loggined) {
-      inputType = (
-        <div className="login-block">
-          <input type="text" onKeyDown={this.handleKeyDown} id="input" placeholder="Type your login and press Enter"></input>
-        </div>
-      )
-    } else {
-      inputType = null;
-    }
-    return (
-      <div>
-        { inputType }
-      </div>
-    )
+      );
   }
 };
 
-class Chat extends Component {
-  constructor() {
-    super();
-    this.state = {
-      newMessage: false
-    }
-    // eslint-disable-next-line
-    self = this;
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
-
-  handleKeyDown (e) {
-    if (e.which === 13) {
-      pubnub.publish(
-          {
-              message: {
-                text: e.target.value,
-                uuid: name
-              },
-              channel: 'my_channel',
-          }
-      );
-      e.target.value = "";
-    }
-  }
-
-  render () {
-
-
-      return (
-        <div className="chat-block">
-          <ul>
-            { Object.keys(msgs).map(function(key) {
-                return (
-                  <li>
-                    <div className="avatar">{msgs[key].uuid[0].toUpperCase()}</div>
-                    <div className="message">{msgs[key].text}</div>
-                  </li>
-                )
-            })}
-          </ul>
-          <input type="text" onKeyDown={this.handleKeyDown} placeholder="Type your message and press Enter"></input>
-        </div>
-      )
-  }
-
-}
-
 class ChatArea extends Component {
-  render() {
-      return (
-        <div>
-          <Login></Login>
-          <Chat></Chat>
-        </div>
-      );
-  }
-}
 
+  constructor(props) {
+    super(props);
+    this.pubnub = new PubNubReact({
+        publishKey: 'pub-c-af9e408a-d4a8-473c-b591-81402cdf9aaf',
+        subscribeKey: 'sub-c-7e76d5bc-2658-11e9-9508-c2e2c4d7488a',
+        uuid: username
+    });
+
+    this.state = {
+      messages: [],
+      chatInput: '' 
+    };
+    this.pubnub.init(this);
+  }
+
+  sendChat = () => {
+    if (this.state.chatInput) {
+        this.pubnub.publish({
+            message: {
+              text: this.state.chatInput,
+              uuid: username
+            },
+            channel: 'chatting'
+        });
+        this.setState({ chatInput: '' })
+    }
+
+  }
+
+  setChatInput = (event) => {
+    this.setState({ chatInput: event.target.value })
+  }
+
+  componentDidMount() {
+    this.pubnub.subscribe({
+        channels: ['chatting'],
+        withPresence: true
+    });
+
+    this.pubnub.getMessage('chatting', (msg) => {
+          this.pubnub.hereNow(
+            {
+                channels: ["chatting"],
+                includeUUIDs: true,
+                includeState: true
+            },
+            (status, response) => {
+                console.log(status);
+                console.log(response);
+            }
+        );
+        const {text, uuid} = msg.message
+        let messages = this.state.messages;
+        messages.push(
+          <Message key={ this.state.messages.length } uuid={ uuid } text={ text }/>
+        );
+        this.setState({
+            messages: messages
+        });
+    });
+  }
+
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+        this.sendChat();
+    }
+  }
+  componentWillUnmount() {
+    this.pubnub.unsubscribe({
+        channels: ['chatting']
+    });
+  }
+
+  render(){
+    const { classes } = this.props;
+    return(
+      <Card>
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              Messages
+            </Typography>
+              <div>
+                <List component="nav">
+                  <ListItem>
+                  <Typography component="div">
+                    { this.state.messages }
+                  </Typography>
+                  </ListItem>
+                </List>
+              </div>
+          </CardContent>
+          <CardActions>
+            <Input
+              placeholder="Enter a message"
+              value={this.state.chatInput}
+              onKeyDown={this.handleKeyPress}
+              onChange={this.setChatInput}
+              inputProps={{
+                'aria-label': 'Description',
+              }}
+            />
+            <Button size="small" color="primary">
+              Github
+            </Button>
+            <Button size="small" color="primary">
+              Exit
+            </Button>
+          </CardActions>
+        </Card>
+      );
+    }
+}
 export default ChatArea;
