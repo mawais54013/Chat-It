@@ -28,7 +28,7 @@ export default class HomePage extends React.Component {
       .ref("code-sessions/" + this.state.key)
       .set({
         content: `// Happy coding
-document.getElementById("demo").innerHTML = 5 + 6;
+document.getElementById("demo").innerHTML = 5 + 6;  
         `,
         content2: "<h1 id='demo'></h1>",
         css: "css area",

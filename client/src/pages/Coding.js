@@ -241,7 +241,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         />
         <Container>
         <Row>
-        <Col xs={12} md={8}>
+        <Col xs={6} md={5}>
         <div className="coding-page">
         <div className="codeArea">
         <h4>Javascript</h4>
@@ -291,10 +291,17 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             }}
           />
           </div>
+        {/* <section className="result" id="iframe">
+          <iframe title="result" className="iframe" ref="iframe" />
+        </section> */}
+        </div>
+        <br/>
+        </Col>
+        <Col xs={6} md={3}>
+        <h3>Output</h3>
         <section className="result" id="iframe">
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
-        </div>
         </Col>
           
         <Col xs={6} md={4}>
@@ -366,6 +373,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         <div>
           <ChatArea />
         </div>
+        <br />
         </Col>
         </Row>
         </Container>
