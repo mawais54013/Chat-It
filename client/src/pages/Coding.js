@@ -370,6 +370,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             </div>
           }
         </div>
+        <br />
         <div>
           <ChatArea />
         </div>
