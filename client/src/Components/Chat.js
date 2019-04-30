@@ -18,33 +18,11 @@ import PubNubReact from 'pubnub-react';
 const now = new Date().getTime();
 const username = ['user', now].join('-');
 
-const styles = {
-  card: {
-    maxWidth: 345,
-    margin: '0 auto', /* Added */
-    float: 'none', /* Added */
-    marginbottom: '10px' /* Added */
-  },
-  openCard:{
-    maxWidth: 200
-  },
-  openMedia: {
-    height: 80,
-  },
-  media: {
-    objectFit: 'cover',
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-};
-
 class Message extends Component{
 
   render () {
       return ( 
-        <div > { this.props.uuid }: { this.props.text } 
+        <div > { this.props.text } 
         </div>
       );
   }
@@ -126,6 +104,7 @@ class ChatArea extends Component {
   }
 
   render(){
+    console.log(this.state.messages)
     const { classes } = this.props;
     return(
       <Card>
@@ -153,12 +132,6 @@ class ChatArea extends Component {
                 'aria-label': 'Description',
               }}
             />
-            <Button size="small" color="primary">
-              Github
-            </Button>
-            <Button size="small" color="primary">
-              Exit
-            </Button>
           </CardActions>
         </Card>
       );

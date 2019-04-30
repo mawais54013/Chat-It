@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Header from "../Components/header";
 import rand from "random-key";
 import { database } from "firebase";
-import ChatArea from '../Components/Chat';
 import "./home.css";
 
 
@@ -64,7 +63,6 @@ document.getElementById("demo").innerHTML = 5 + 6;
             </button>
           </div>
         </div>
-        <ChatArea />
       </React.Fragment>
     );
   }

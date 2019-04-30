@@ -7,7 +7,7 @@ import Party from '../Components/Party'
 import { getRandomRGB } from '../Components/util';
 import { Container, Row , Col} from 'react-bootstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Chat from '../Components/Chat';
+import ChatArea from '../Components/Chat';
 import "./coding.css";
 
 require("codemirror/lib/codemirror.css");
@@ -362,6 +362,9 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
               />
             </div>
           }
+        </div>
+        <div>
+          <ChatArea />
         </div>
         </Col>
         </Row>
