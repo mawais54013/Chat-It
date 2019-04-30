@@ -3,6 +3,7 @@ import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
 import CodeMirror from "react-codemirror";
+import Timer from "react-compound-timer";
 import Party from '../Components/Party'
 import { getRandomRGB } from '../Components/util';
 import { Container, Row , Col} from 'react-bootstrap';
@@ -375,6 +376,28 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           <ChatArea />
         </div>
         <br />
+        <div>
+          <h2>Timer</h2>
+        <Timer
+            initialTime={0}
+        >
+            {({ start, resume, pause, stop, reset, timerState }) => (
+                <React.Fragment>
+                    <div>
+                      Minutes: <Timer.Minutes />  &nbsp;
+                      Seconds: <Timer.Seconds />
+                    </div>
+                    <div>{timerState}</div>
+                    <br />
+                    <div>
+                        <button onClick={start}>Start</button>
+                        <button onClick={stop}>Stop</button>
+                        <button onClick={reset}>Reset</button>
+                    </div>
+                </React.Fragment>
+            )}
+        </Timer>
+        </div>
         </Col>
         </Row>
         </Container>
