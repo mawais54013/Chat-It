@@ -298,17 +298,17 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         </div>
         <br/>
         </Col>
-        <Col xs={6} md={3}>
+        <Col xs={6} md={4}>
         <h3>Output</h3>
         <section className="result" id="iframe">
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
         </Col>
           
-        <Col xs={6} md={4}>
+        <Col xs={6} md={3}>
         <div className="App">
           <div className="header">
-            <h2>Video Chat Area</h2>
+            <h2>Video Chat</h2>
             <p>Type in the room name and your name to join or start a video chat room</p>
           </div>
           {
@@ -335,6 +335,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
                   }
                 }}
               />
+              <br />
               <button
                 className="btn"
                 onClick={this.handleStart}
@@ -373,6 +374,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         </div>
         <br />
         <div>
+          <h2>Chat Area</h2>
           <ChatArea />
         </div>
         <br />

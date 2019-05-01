@@ -2,11 +2,11 @@
 {
     background-color: white;
     width: 100%;
-    height: 80%;
+    height: 90%;
 }
 .cm-s-dracula.CodeMirror
 {
-    height: 200px;
+    height: 250px;
 }
 #test1
 {
@@ -35,5 +35,14 @@ video
 .iframe
 {
     width: 100%;
-    height: 90%;
+    height: 100%;
+}
+.col-md-5
+{
+    padding-right: 0px;
+    padding-left: 5px;
+}
+.col-md-3
+{
+    padding-right: 0px;
 }
