@@ -1,9 +1,9 @@
-// particle js for the background
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../Components/header";
 import rand from "random-key";
 import { database } from "firebase";
+import Particles from 'react-particles-js';
 import "./home.css";
 
 
@@ -41,29 +41,55 @@ document.getElementById("demo").innerHTML = 5 + 6;
   render() {
     
     return (
-      <React.Fragment>
-        <Header/>
-        <div className="homepage">
-          <p className="title">
-            <br />
-            Share Code in <span className="highlight">Realtime</span>.
-            <br />
-            With Anyone at Anytime.
-          </p>
-          <br/>
-          <p className="sub-title">
-            Code Share Editor. 
-            <br/>
-            Using Firebase Realtime
-            Database, Code Mirror as Editor, Liowebrtc for video chatting, and. 
-          </p>
-          <div>
-            <button className="btn" onClick={this.onNewGround}>
-              Share Code
-            </button>
-          </div>
+      <div className="App">
+      <div>
+				<Particles className="visibleInBack"
+              params={{
+                "particles": {
+                    "number": {
+                        "value": 50
+                    },
+                    "size": {
+                        "value": 3
+                    }
+                },
+                "interactivity": {
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        }
+                    }
+                }
+            }}
+		  />
+			</div>
+        <div className = "overlap">
+          <React.Fragment>
+            <Header/>
+            <div className="homepage">
+              <p className="title">
+                <br />
+                Share Code in <span className="highlight">Realtime</span>.
+                <br />
+                With Anyone at Anytime.
+              </p>
+              <br/>
+              <p className="sub-title">
+                Code Share Editor. 
+                <br/>
+                Using Firebase Realtime
+                Database, Code Mirror as Editor, Liowebrtc for video chatting, and. 
+              </p>
+              <div>
+                <button className="btn" onClick={this.onNewGround}>
+                  Share Code
+                </button>
+              </div>
+            </div>
+          </React.Fragment>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
