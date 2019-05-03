@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { LioWebRTC, LocalVideo, RemoteVideo } from 'react-liowebrtc'
-// import MyComponent from './MyComponent';
 
 class Party extends Component {
 

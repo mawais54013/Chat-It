@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
