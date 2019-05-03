@@ -229,6 +229,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
     // console.log(`${window.location.origin}/#${this.state.roomName}`,"test here");
     const url = window.location.href;
     return (
+      <div id="testArea" style={{backgroundColor: 'black', color: 'white'}}>
       <React.Fragment>
         <Header
           style={{ background: "#1d1f27" }}
@@ -240,9 +241,10 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             </div>
           }
         />
+        <br />
         <Container>
         <Row>
-        <Col xs={6} md={5}>
+        <Col xs={6} md={5} id="codeAreaV1">
         <div className="coding-page">
         <div className="codeArea">
         <h4>Javascript</h4>
@@ -298,17 +300,17 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         </div>
         <br/>
         </Col>
-        <Col xs={6} md={4}>
+        <Col xs={6} md={5} id="outputArea">
         <h3>Output</h3>
         <section className="result" id="iframe">
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
         </Col>
           
-        <Col xs={6} md={3}>
-        <div className="App">
+        <Col xs={6} md={2}>
+        <div className="AppArea">
           <div className="header">
-            <h2>Video Chat</h2>
+            <h3>Video Chat</h3>
             <p>Type in the room name and your name to join or start a video chat room</p>
           </div>
           {
@@ -335,6 +337,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
                   }
                 }}
               />
+              <br />
               <br />
               <button
                 className="btn"
@@ -373,12 +376,12 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           }
         </div>
         <br />
-        <div>
-          <h2>Chat Area</h2>
+        <div id="chatArea">
+          <h3>Chat Area</h3>
           <ChatArea />
         </div>
         <br />
-        <div>
+        <div id="timeArea">
           <h2>Timer</h2>
         <Timer
             initialTime={0}
@@ -404,6 +407,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         </Row>
         </Container>
       </React.Fragment>
+      </div>
     );
   }
 }

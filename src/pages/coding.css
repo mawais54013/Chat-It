@@ -39,10 +39,40 @@ video
 }
 .col-md-5
 {
-    padding-right: 0px;
-    padding-left: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
-.col-md-3
+.AppArea
 {
-    padding-right: 0px;
+    border: 2px solid #6FC3DF;
+    padding: 10px;
+}
+.textBox
+{
+    width: 130px;
+}
+#chatArea
+{
+    border: 2px solid #DF740C;
+    padding: 10px;
+}
+#timeArea
+{
+    border: 2px solid #6FC3DF;
+    padding: 10px;
+}
+#outputArea
+{
+    border: 2px solid #DF740C;
+    padding: 10px;
+}
+#codeAreaV1
+{
+    border: 2px solid #6FC3DF;
+    padding: 10px;
+}
+#flowMessages
+{
+    overflow-y: scroll; 
+    height:100px
 }

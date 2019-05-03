@@ -112,7 +112,7 @@ class ChatArea extends Component {
             <Typography gutterBottom variant="headline" component="h2">
               Messages
             </Typography>
-              <div>
+              <div id="flowMessages">
                 <List component="nav">
                   <ListItem>
                   <Typography component="div">
