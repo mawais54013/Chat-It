@@ -76,10 +76,10 @@ document.getElementById("demo").innerHTML = 5 + 6;
               </p>
               <br/>
               <p className="sub-title">
-                Code Share Editor. 
+                Live Code Editor. 
                 <br/>
-                Using Firebase Realtime
-                Database, Code Mirror as Editor, Liowebrtc for video chatting, and. 
+                Using Firebase, Code Mirror, Liowebrtc, Pubnub ChatEngine, and built in timer.<br/>
+                Practice on your own or start a project with others easily
               </p>
               <div>
                 <button className="btn" onClick={this.onNewGround}>
