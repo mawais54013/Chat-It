@@ -308,9 +308,32 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         </Col>
           
         <Col xs={6} md={2}>
+        <div id="timeArea">
+          <h3>Timer</h3>
+        <Timer
+            initialTime={0}
+        >
+            {({ start, resume, pause, stop, reset, timerState }) => (
+                <React.Fragment>
+                    <div>
+                      Minutes: <Timer.Minutes />  &nbsp;
+                      Seconds: <Timer.Seconds />
+                    </div>
+                    <div>{timerState}</div>
+                    <br />
+                    <div>
+                        <button onClick={start}>Start</button>
+                        <button onClick={stop}>Stop</button>
+                        <button onClick={reset}>Reset</button>
+                    </div>
+                </React.Fragment>
+            )}
+        </Timer>
+        </div>
+        <br />
         <div className="AppArea">
           <div className="header">
-            <h3>Video Chat</h3>
+            <h4>Video Chat</h4>
             <p>Type in the room name and your name to join or start a video chat room</p>
           </div>
           {
@@ -377,11 +400,11 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
         </div>
         <br />
         <div id="chatArea">
-          <h3>Chat Area</h3>
+          <h4>Chat Area</h4>
           <ChatArea />
         </div>
         <br />
-        <div id="timeArea">
+        {/* <div id="timeArea">
           <h2>Timer</h2>
         <Timer
             initialTime={0}
@@ -402,7 +425,7 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
                 </React.Fragment>
             )}
         </Timer>
-        </div>
+        </div> */}
         </Col>
         </Row>
         </Container>
