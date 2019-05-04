@@ -60,7 +60,7 @@ Below includes brief descriptions of each important functions:
 
 ## Firebase
 
-![firebase](images/firebase.png)
+![firebase](Images/firebase.png)
 
 After connecting with Firebase with your own keys, the code below sets up a random 5 element key that will be used for each sessions. The key will store the main code the user types,
 and as a default each code set already has code input so the user has something to start with instead of starting from scratch. The database contains values for html(content2), javascript(content), css(css), and the data the session was created.
@@ -96,7 +96,7 @@ document.getElementById("demo").innerHTML = 5 + 6;
 
 ## Codemirror
 
-![codemirror](images/codemirror.png)
+![codemirror](Images/codemirror.png)
 
 Codemirror is really useful to make a code editor online for multiple users. Firebase takes the values from each of the code area and updates the database to share with other users in realtime. 
 
@@ -180,7 +180,7 @@ The join and generateRemotes function connects other users with the current vide
 
 ## Pubnub ChatEngine
 
-![chatengine](images/chatEngine.png)
+![chatengine](Images/chatEngine.png)
 
 ```
 componentDidMount() {
