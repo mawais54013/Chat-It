@@ -264,21 +264,6 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           />
           </div>
           <div>
-          <h4>CSS</h4>
-          <CodeMirror
-          ref={t => (this.codemirror4 = t)}
-            value={this.state.code2}
-            onChange={this.onChange2}
-            // onChange={this.onChange2}
-            options={{
-              mode: 'css',
-              theme: 'dracula',
-              lineNumbers: true,
-              readOnly: false,
-            }}
-          />
-          </div>
-          <div>
           <h4>HTML</h4>
           <CodeMirror
           ref={r => (this.codemirror1 = r)}
@@ -288,6 +273,21 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             // value={html}
             options={{
               mode: 'htmlmixed',
+              theme: 'dracula',
+              lineNumbers: true,
+              readOnly: false,
+            }}
+          />
+          </div>
+          <div>
+          <h4>CSS</h4>
+          <CodeMirror
+          ref={t => (this.codemirror4 = t)}
+            value={this.state.code2}
+            onChange={this.onChange2}
+            // onChange={this.onChange2}
+            options={{
+              mode: 'css',
               theme: 'dracula',
               lineNumbers: true,
               readOnly: false,
@@ -404,28 +404,6 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
           <ChatArea />
         </div>
         <br />
-        {/* <div id="timeArea">
-          <h2>Timer</h2>
-        <Timer
-            initialTime={0}
-        >
-            {({ start, resume, pause, stop, reset, timerState }) => (
-                <React.Fragment>
-                    <div>
-                      Minutes: <Timer.Minutes />  &nbsp;
-                      Seconds: <Timer.Seconds />
-                    </div>
-                    <div>{timerState}</div>
-                    <br />
-                    <div>
-                        <button onClick={start}>Start</button>
-                        <button onClick={stop}>Stop</button>
-                        <button onClick={reset}>Reset</button>
-                    </div>
-                </React.Fragment>
-            )}
-        </Timer>
-        </div> */}
         </Col>
         </Row>
         </Container>
