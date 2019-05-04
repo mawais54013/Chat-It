@@ -52,3 +52,4 @@ APIs and Libraries
 
 # Wireframe and Layout
 
+Built with react as the front end and the back end is node.js with Google's live firebase database for shared coding and live updates.
