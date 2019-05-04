@@ -8,6 +8,7 @@ Main Page Above
 # Getting Started 
 
 Site Link: [CodeChat](https://codechat-v1.herokuapp.com/)
+(Note: refresh site page if it does not work at first)
 
 After the main page, the user will be taken to the coding page where all of the magic takes place. A brief overview below shows areas for coding(JS, HTML, and CSS), video chat area, a chat area, and a timer. 
 
