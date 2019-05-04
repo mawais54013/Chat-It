@@ -12,10 +12,8 @@ export default class HomePage extends React.Component {
   state = {
     key: rand.generate(5),
     num: null,
-    // roomName: ''
   };
   componentDidMount = () => {
-    // this.setup();
     database()
       .ref("code-sessions")
       .on("value", s => {
@@ -39,7 +37,7 @@ document.getElementById("demo").innerHTML = 5 + 6;
   };
 
   render() {
-    
+    localStorage.setItem('mainKey', this.state.key);
     return (
       <div className="App">
       <div>

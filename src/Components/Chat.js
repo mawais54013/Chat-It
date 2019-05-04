@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,6 +15,7 @@ import PubNubReact from 'pubnub-react';
 
 const now = new Date().getTime();
 const username = ['user', now].join('-');
+var chatKey = localStorage.getItem('mainKey');
 
 class Message extends Component{
 
@@ -51,7 +51,7 @@ class ChatArea extends Component {
               text: this.state.chatInput,
               uuid: username
             },
-            channel: 'chatting'
+            channel: chatKey
         });
         this.setState({ chatInput: '' })
     }
@@ -64,14 +64,14 @@ class ChatArea extends Component {
 
   componentDidMount() {
     this.pubnub.subscribe({
-        channels: ['chatting'],
+        channels: [chatKey],
         withPresence: true
     });
 
-    this.pubnub.getMessage('chatting', (msg) => {
+    this.pubnub.getMessage(chatKey, (msg) => {
           this.pubnub.hereNow(
             {
-                channels: ["chatting"],
+                channels: [chatKey],
                 includeUUIDs: true,
                 includeState: true
             },
@@ -98,11 +98,12 @@ class ChatArea extends Component {
   }
   componentWillUnmount() {
     this.pubnub.unsubscribe({
-        channels: ['chatting']
+        channels: [chatKey]
     });
   }
 
   render(){
+    console.log(chatKey)
     console.log(this.state.messages)
     const { classes } = this.props;
     return(

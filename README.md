@@ -52,4 +52,12 @@ APIs and Libraries
 
 # Wireframe and Layout
 
-Built with react as the front end and the back end is node.js with Google's live firebase database for shared coding and live updates.
+Built with react as the front end and the back end is node.js with Google's live firebase database for live updates. The main design for this project is to make it really easy to navigate the user to using the features like chatting or video chatting, but the focus is on the coding portion so users can easily practice their skills. 
+
+Below includes brief descriptions of each important functions:
+
+
+
+
+## Authors
+* **Muhammad** - https://github.com/mawais54013
