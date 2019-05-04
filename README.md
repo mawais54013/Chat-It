@@ -216,9 +216,9 @@ componentDidMount() {
 The chat code above is used to connect new users to the current channel. Every time a new message is typed, the message is added to an array and display on the chat area. 
 
 # Final Thoughts
-Hope everyone enjoys working this application, I had a really great time creating the project and I hope users will enjoy it too.
+Hope everyone enjoys this application, I had a really great time creating the project and I hope everyone will enjoy it too.
 
-Thank you Everyone
+Thank you
 
 # Author
 * **Muhammad** - https://github.com/mawais54013
