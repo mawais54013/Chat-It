@@ -2,7 +2,7 @@
 
 This application is a online live code editor using Liowebrtc, Pubnub ChatEngine, Codemirror, and Firebase. Users can either practice on their own or make web pages with others using this application. This application is useful for users to practice their coding skills, create awesome websites, and test each other to prepare for their career advancement. 
 
-![index](images/Screen1.png)
+![index](Images/Screen1.png)
 Main Page Above 
 
 # Getting Started 
@@ -11,7 +11,7 @@ Site Link: [CodeChat](https://codechat-v1.herokuapp.com/)
 
 After the main page, the user will be taken to the coding page where all of the magic takes place. A brief overview below shows areas for coding(JS, HTML, and CSS), video chat area, a chat area, and a timer. 
 
-![codepage](images/Screen2.png)
+![codepage](Images/Screen2.png)
 
 Codemirror is used to set up the Javascript, HTML, and CSS portions and the output is a html web page itself. Timer is an npm package that users can reset and test their coding skills against the clock. Video chat is used by utilizing Liowertc for connect between users with both audio and video features. The chat feature is Pubnub ChatEngine in case users want to post a link or suggestions. 
 
@@ -52,6 +52,7 @@ APIs and Libraries
 
 # Wireframe and Layout
 
+<<<<<<< HEAD
 Built with react as the front end and the back end is node.js with Google's live firebase database for live updates. The main design for this project is to make it really easy to navigate the user to using the features like chatting or video chatting, but the focus is on the coding portion so users can easily practice their skills. 
 
 Below includes brief descriptions of each important functions:
@@ -61,3 +62,4 @@ Below includes brief descriptions of each important functions:
 
 ## Authors
 * **Muhammad** - https://github.com/mawais54013
+=======
