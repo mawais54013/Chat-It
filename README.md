@@ -1,6 +1,6 @@
 # CodeChat 
 
-This application is a online live code editor using Liowebrtc, Pubnub ChatEngine, Codemirror, and Firebase. Users can either practice on their own or make web pages with others using this application. This application is useful for users to practice their coding skills, create awesome websites, and test each other to prepare for their career advancement. 
+This application is a online collaborative live code editor using Liowebrtc, Pubnub ChatEngine, Codemirror, and Firebase. Users can either practice on their own or make web pages with others using this application. This application is useful for users to practice their coding skills, create awesome websites, and test each other to prepare for their career advancement. 
 
 ![index](Images/Screen1.png)
 Main Page Above 
@@ -8,6 +8,7 @@ Main Page Above
 # Getting Started 
 
 Site Link: [CodeChat](https://codechat-v1.herokuapp.com/)
+(Note: refresh site page if it does not work at first)
 
 After the main page, the user will be taken to the coding page where all of the magic takes place. A brief overview below shows areas for coding(JS, HTML, and CSS), video chat area, a chat area, and a timer. 
 
@@ -60,7 +61,7 @@ Below includes brief descriptions of each important functions:
 
 ## Firebase
 
-![firebase](images/firebase.png)
+![firebase](Images/firebase.png)
 
 After connecting with Firebase with your own keys, the code below sets up a random 5 element key that will be used for each sessions. The key will store the main code the user types,
 and as a default each code set already has code input so the user has something to start with instead of starting from scratch. The database contains values for html(content2), javascript(content), css(css), and the data the session was created.
@@ -96,7 +97,7 @@ document.getElementById("demo").innerHTML = 5 + 6;
 
 ## Codemirror
 
-![codemirror](images/codemirror.png)
+![codemirror](Images/codemirror.png)
 
 Codemirror is really useful to make a code editor online for multiple users. Firebase takes the values from each of the code area and updates the database to share with other users in realtime. 
 
@@ -180,7 +181,7 @@ The join and generateRemotes function connects other users with the current vide
 
 ## Pubnub ChatEngine
 
-![chatengine](images/chatEngine.png)
+![chatengine](Images/chatEngine.png)
 
 ```
 componentDidMount() {
@@ -215,9 +216,9 @@ componentDidMount() {
 The chat code above is used to connect new users to the current channel. Every time a new message is typed, the message is added to an array and display on the chat area. 
 
 # Final Thoughts
-Hope everyone enjoys working this application, I had a really great time creating the project and I hope users will enjoy it too.
+Hope everyone enjoys this application, I had a really great time creating the project and I hope everyone will enjoy it too.
 
-Thank you Everyone
+Thank you
 
 # Author
 * **Muhammad** - https://github.com/mawais54013
