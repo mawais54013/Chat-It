@@ -32,8 +32,8 @@ class ChatArea extends Component {
   constructor(props) {
     super(props);
     this.pubnub = new PubNubReact({
-        publishKey: 'pub-c-af9e408a-d4a8-473c-b591-81402cdf9aaf',
-        subscribeKey: 'sub-c-7e76d5bc-2658-11e9-9508-c2e2c4d7488a',
+        publishKey: 'pub-c-31ebf098-a310-43a8-9329-7a0fd9963987',
+        subscribeKey: 'sub-c-92dd5188-714a-11e9-bedf-bef46dd4efdc',
         uuid: username
     });
 
