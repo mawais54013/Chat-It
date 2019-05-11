@@ -5,6 +5,11 @@ import { HomePage, CodingPage } from "./pages/";
 
 class App extends Component {
   render() {
+    var http = require("http");
+    setInterval(function() {
+        http.get("http://codechat-v1.herokuapp.com");
+        console.log('it works')
+    }, 600000);
     return ( 
       <Router>
         <div className="App">
@@ -17,3 +22,4 @@ class App extends Component {
 }
 
 export default App;
+
