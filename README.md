@@ -7,6 +7,8 @@ Main Page Above
 
 # Getting Started 
 
+IMPORTANT NOTE: Due to heroku sleep function, if the site has not been used for more than 30 minutes then it will go into sleep mode and show an error page. If that happens just refresh the page and it should work after that. 
+
 Site Link: [CodeChat](https://codechat-v1.herokuapp.com/)
 (Note: refresh site page if it does not work at first)
 
