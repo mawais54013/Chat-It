@@ -1,4 +1,5 @@
- import React from "react";
+// coding page
+import React from "react";
 import Header from "../Components/header";
 import { database } from "firebase";
 import CodeMirror from "react-codemirror";
@@ -9,7 +10,7 @@ import { Container, Row , Col} from 'react-bootstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ChatArea from '../Components/Chat';
 import "./coding.css";
-
+// require all codemirror functions
 require("codemirror/lib/codemirror.css");
 require("codemirror/mode/htmlmixed/htmlmixed");
 require("codemirror/mode/css/css")
@@ -293,9 +294,6 @@ handleColorSlide = (color) => this.setState({ windowColor: color.rgb });
             }}
           />
           </div>
-        {/* <section className="result" id="iframe">
-          <iframe title="result" className="iframe" ref="iframe" />
-        </section> */}
         </div>
         <br/>
         </Col>

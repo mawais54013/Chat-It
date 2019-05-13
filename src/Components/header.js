@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GithubCorner from 'react-github-corner';
 import "./header.css";
-
+// github corner setup with link to project github
 const Header = () => {
   return (
     <header className="App-header">

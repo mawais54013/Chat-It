@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import * as firebase from "firebase";
-
+// set up with firebase with the info below
+// note: please use your own key and url when recreating
 var config = {
     apiKey: "AIzaSyATqbuKr2hAJEaTfiUgRYU_h3Y94hcEWuM",
     authDomain: "real-time-code.firebaseapp.com",

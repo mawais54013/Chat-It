@@ -1,3 +1,4 @@
+// set up random keys  functions
 function randColor() {
     return Math.floor(100 + (Math.random() * 155));
   }

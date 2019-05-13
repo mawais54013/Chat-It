@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { LioWebRTC, LocalVideo, RemoteVideo } from 'react-liowebrtc'
-
+// liowebrtc setup
 class Party extends Component {
-
+// set up rooms and assign the room
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class Party extends Component {
       inRoom: false,
     };
   }
-
+// if someone joins this functions sets that someone is in room
   // join = (webrtc) => webrtc.joinRoom('video-chat-room-arbitrary-name');
   join = (webrtc) => webrtc.joinRoom(this.state.roomID, (err, desc) => {
     this.setState({ inRoom: true });
@@ -24,12 +24,12 @@ class Party extends Component {
   handleRemovedPeer = () => {
     this.setState({ peers: this.state.peers.filter(p => !p.closed) });
   }
-
+// generate remote videos once someone else joins
   generateRemotes = () => this.state.peers.map((peer) => (
       <RemoteVideo key={`remote-video-${peer.id}`} peer={peer} id=""/>
     )
   );
-
+// user video appears first and below are the remote users
   render () {
     return (
       <LioWebRTC

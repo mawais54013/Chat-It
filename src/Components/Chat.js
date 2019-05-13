@@ -12,11 +12,11 @@ import Input from '@material-ui/core/Input';
 
 import PubNubReact from 'pubnub-react';
 
-
+// pubnub chat engine setup
 const now = new Date().getTime();
 const username = ['user', now].join('-');
 var chatKey = localStorage.getItem('mainKey');
-
+// set up rendering messages here
 class Message extends Component{
 
   render () {
@@ -28,7 +28,7 @@ class Message extends Component{
 };
 
 class ChatArea extends Component {
-
+// link to pubnub SDK for chatengine
   constructor(props) {
     super(props);
     this.pubnub = new PubNubReact({
@@ -36,14 +36,14 @@ class ChatArea extends Component {
         subscribeKey: 'sub-c-92dd5188-714a-11e9-bedf-bef46dd4efdc',
         uuid: username
     });
-
+// array to store chats 
     this.state = {
       messages: [],
       chatInput: '' 
     };
     this.pubnub.init(this);
   }
-
+// once chat typed add the message and update chatinput to publish to the current channel and store message
   sendChat = () => {
     if (this.state.chatInput) {
         this.pubnub.publish({
@@ -57,17 +57,17 @@ class ChatArea extends Component {
     }
 
   }
-
+// changing input
   setChatInput = (event) => {
     this.setState({ chatInput: event.target.value })
   }
-
+// set chat with channel
   componentDidMount() {
     this.pubnub.subscribe({
         channels: [chatKey],
         withPresence: true
     });
-
+// display messages
     this.pubnub.getMessage(chatKey, (msg) => {
           this.pubnub.hereNow(
             {
@@ -90,18 +90,19 @@ class ChatArea extends Component {
         });
     });
   }
-
+// enter key function
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
         this.sendChat();
     }
   }
+  // if user leaves
   componentWillUnmount() {
     this.pubnub.unsubscribe({
         channels: [chatKey]
     });
   }
-
+// chat render area 
   render(){
     console.log(chatKey)
     console.log(this.state.messages)

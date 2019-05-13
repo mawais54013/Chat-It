@@ -8,11 +8,12 @@ import "./home.css";
 
 
 export default class HomePage extends React.Component {
-  
+  // generate random key for link
   state = {
     key: rand.generate(5),
     num: null,
   };
+  // link to database 
   componentDidMount = () => {
     database()
       .ref("code-sessions")
@@ -20,7 +21,8 @@ export default class HomePage extends React.Component {
         this.setState({ num: s.numChildren() });
       });
   };
-
+// database will set the current session with the content from html,css, and js
+// then push as prop to use later
   onNewGround = () => {
     database()
       .ref("code-sessions/" + this.state.key)
@@ -35,7 +37,8 @@ document.getElementById("demo").innerHTML = 5 + 6;
     this.props.history.push("/" + this.state.key);
 
   };
-
+// set up particle.js for style
+// set up main description and link to start function above and open code session
   render() {
     localStorage.setItem('mainKey', this.state.key);
     return (
